@@ -1,43 +1,50 @@
 import random
 
-def Jogar():
+
+def play():
     print("********************************")
     print("Bem vindo ao jogo de advinhação!")
     print("********************************")
 
-    numero_secreto = random.randrange(1,101)
-    total_de_tentativas = 0
-    rodada = 1
+    secret_number = random.randrange(1, 101)
+    total_attempts = 0
+    game_turn = 1
+    game_score = 1000
 
     print("Selecione a dificuldade do jogo:")
-    dificuldade = int(input("(1) Fácil (2) Médio (3) Difícil: "))
+    level = int(input("(1) Fácil (2) Médio (3) Difícil: "))
 
-    if(dificuldade == 1):
-        total_de_tentativas = 20
-    elif(dificuldade == 2):
-        total_de_tentativas = 10
+    if level == 1:
+        total_attempts = 20
+    elif level == 2:
+        total_attempts = 10
     else:
-        total_de_tentativas = 5
+        total_attempts = 5
 
-    while(rodada <= total_de_tentativas):
+    while game_turn <= total_attempts:
 
-        print("Rodada {} de {}".format(rodada, total_de_tentativas))
-        palpite = int(input("Digite o número: "))
-        print("Seu palpite foi:", palpite)
+        print("Rodada {} de {}".format(game_turn, total_attempts))
+        guess = int(input("Digite o número: "))
+        print("Seu palpite foi:", guess)
 
-        acertou = numero_secreto == palpite
-        maior = numero_secreto < palpite
-        menor = numero_secreto > palpite
+        riddle = secret_number == guess
+        bigger = secret_number < guess
+        minor = secret_number > guess
 
-        if(acertou):
+        if riddle:
             print("Você acertou!")
             break
-        elif(maior):
+        elif bigger:
             print("O seu palpite foi maior que o número secreto!")
-        elif(menor):
+            game_score -= abs(secret_number - guess)
+        elif minor:
             print("O seu palpite foi menor que o número secreto!")
+            game_score -= abs(secret_number - guess)
 
-        rodada += 1
+        game_turn += 1
 
-if(__name__=="__main__"):
-    Jogar()
+    print("Your Final Score is: {}".format(game_score))
+
+
+if __name__ == "__main__":
+    play()
