@@ -1,16 +1,12 @@
 import helper
+import random
 
 
 def play():
-    print("********************************")
-    print("Bem vindo ao jogo de forca!")
-    print("********************************")
+    print_welcome_message()
+    secret_word = generate_secret_word()
 
-    secret_word = "banana".strip().upper()
-
-    word_letters = []
-    for letter in secret_word:
-        word_letters.append("_")
+    word_letters = ["_" for letter in secret_word]
     print(word_letters)
 
     wrong_guesses = set()
@@ -48,6 +44,22 @@ def play():
         print("Fim do Jogo, você ganhou!")
     else:
         print("Fim do Jogo, você perdeu!")
+
+
+def print_welcome_message():
+    print("********************************")
+    print("Bem vindo ao jogo de forca!")
+    print("********************************")
+
+def generate_secret_word:
+    words_list = []
+    words_file = open("palavras.txt", "r")
+
+    for line in words_file:
+        words_list.append(line.strip().upper())
+
+    words_file.close()
+    return words_list[random.randrange(0, len(words_list))]
 
 
 if __name__ == "__main__":
