@@ -1,3 +1,4 @@
+import jogos
 import random
 
 
@@ -44,6 +45,7 @@ def play():
         game_turn += 1
 
     print("Your Final Score is: {}".format(game_score))
+    jogos.play()
 
 
 if __name__ == "__main__":

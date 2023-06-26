@@ -1,3 +1,4 @@
+import jogos
 import helper
 import random
 
@@ -41,6 +42,7 @@ def play():
         imprime_mensagem_vencedor()
     else:
         imprime_mensagem_perdedor(secret_word)
+    jogos.play();
 
 
 def desenha_forca(erros):
